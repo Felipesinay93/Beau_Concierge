@@ -525,13 +525,13 @@
         </div>
       </div>
 
-      <form id="contact-form" onsubmit="handleSubmit(event)">
+      <form id="contact-form" action="https://formspree.io/f/xojngjwz" method="POST" onsubmit="handleSubmit(event)">
         <div class="form-row">
-          <input type="text" placeholder="First name" required />
-          <input type="text" placeholder="Last name" required />
+          <input type="text" name="first_name" placeholder="First name" required />
+          <input type="text" name="last_name" placeholder="Last name" required />
         </div>
-        <input type="email" placeholder="Email address" required />
-        <select>
+        <input type="email" name="email" placeholder="Email address" required />
+        <select name="service">
           <option value="" disabled selected>What can I help you with?</option>
           <option>Purchase Guidance</option>
           <option>Style Curation</option>
@@ -539,7 +539,7 @@
           <option>Gift Consulting</option>
           <option>Something else</option>
         </select>
-        <textarea placeholder="Tell me a bit more about what you're looking for..."></textarea>
+        <textarea name="message" placeholder="Tell me a bit more about what you're looking for..."></textarea>
         <button type="submit" class="btn btn-primary">Send Message</button>
         <p id="form-msg" style="font-size:0.85rem;color:var(--gold);display:none;margin-top:0.25rem;">
           Thanks! I'll be in touch soon. ✨
@@ -570,10 +570,11 @@
 
     // Simple form submission feedback
     function handleSubmit(e) {
-      e.preventDefault();
+      // Allow Formspree to handle submission naturally
       const msg = document.getElementById('form-msg');
-      msg.style.display = 'block';
-      e.target.querySelectorAll('input, textarea, select, button').forEach(el => el.disabled = true);
+      setTimeout(() => {
+        msg.style.display = 'block';
+      }, 500);
     }
   </script>
 
